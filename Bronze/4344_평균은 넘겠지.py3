@@ -1,0 +1,17 @@
+C = int(input())
+
+for i in range(0, C):
+  N = input().split()
+  N = [ int(n) for n in N ]
+
+  avg = sum(N[1:]) / N[0]
+  avg_N = 0 
+
+  for j in range(1, N[0]+1):
+    if N[j] > avg:
+      avg_N += 1
+
+    avg_P = avg_N / N[0] * 100
+
+    result = '%.3f' % avg_P
+  print(f'{result}%')
