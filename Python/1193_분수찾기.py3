@@ -1,0 +1,22 @@
+N = int(input())
+cnt = 1 
+num = 1 
+get = 0 
+
+while N > num: 
+  cnt += 1  
+  num += cnt
+
+for i in range(1, cnt): 
+  get += i
+
+get = N - get
+
+if cnt % 2 == 1: # 홀수
+  A = (cnt + 1) - get
+  B = (cnt) - (cnt - get)
+else: # 짝수 
+  A = (cnt) - (cnt - get)
+  B = (cnt + 1) - get
+
+print(f'{A}/{B}')
