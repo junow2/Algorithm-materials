@@ -15,3 +15,4 @@ for _ in range(T):
       P[j][k] = P[j-1][k] + P[j][k-1] 
 
   print(P[floor][room-1])
+  
