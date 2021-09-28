@@ -9,3 +9,4 @@ A.sort()
 
 for x in range(len(A)):
   print(A[x])
+ 
