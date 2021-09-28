@@ -14,8 +14,8 @@ def prime_list(n):
     # 소수 목록 산출
     return [i for i in range(2, (n+1)) if sieve[i] == True]
 
-A = int(sys.stdin.readline())
-B = int(sys.stdin.readline())
+A = int(input())
+B = int(input())
 N = prime_list(B)
 C = []
 sum = 0
