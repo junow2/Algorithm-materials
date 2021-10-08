@@ -1,0 +1,13 @@
+N = int(input())
+member = [[0 for x in range(2)] for y in range(N)]
+
+for i in range(N):
+  age, name = input().split()
+  age = int(age) 
+  member[i][0] = age
+  member[i][1] = name
+
+member.sort(key=lambda x:x[0])
+
+for i in member:
+  print(i[0], i[1], sep=' ')
