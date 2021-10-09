@@ -1,0 +1,27 @@
+def prime(n):
+    sieve = [True] * (n+1)
+
+    m = int(n ** 0.5)
+    for i in range(2, m + 1):
+        if sieve[i] == True:          
+            for j in range(i+i, n+1, i): 
+                sieve[j] = False
+
+    return [i for i in range(2, (n+1)) if sieve[i] == True]
+
+N = True
+ran = prime(246912)
+
+while N != 0:
+  N = int(input())
+  N2 = N * 2 
+  cnt = 0 
+
+  for i in ran:
+    if i > N and i <= N2:
+      cnt += 1
+
+  if N != 0:
+    print(cnt)
+  else:
+    pass
