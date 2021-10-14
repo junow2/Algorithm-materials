@@ -1,0 +1,17 @@
+N = int(input())
+personal_info = []
+cnt_li = []
+
+for _ in range(N):
+  kg, cm = map(int, input().split())
+  personal_info.append([kg, cm]) 
+
+for m in range(N):
+  cnt = 1
+  for n in range(N):
+    if personal_info[m][0] < personal_info[n][0] and personal_info[m][1] < personal_info[n][1]:
+      cnt += 1
+  cnt_li.append(cnt)
+
+for i in cnt_li:
+  print(i, end=' ')
