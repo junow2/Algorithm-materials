@@ -1,0 +1,18 @@
+n, m = map(int, input().split())
+num = [ x for x in range(1, n+1)]
+num = [ x for x in range(n, 0, -1)]
+s = []
+
+def func(start):
+  if len(s) == m:
+    for k in s:
+      print(k, end=' ')
+    print('')
+    return
+
+  for i in range(start, n+1):
+    s.append(i)
+    func(i)
+    s.pop()
+
+func(1)
