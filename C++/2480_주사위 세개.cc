@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int arr[3];
+
+int main(void){ 
+    cin >> arr[0] >> arr[1] >> arr[2];
+    int cnt;
+
+    for (int i = 0; i < 3; i++) {
+        if ( arr[i] == arr[0])  { cnt++; }
+    }
+
+    if (cnt == 3) { 
+        cout << 10000 + (1000 * arr[0]); 
+    }
+    if (cnt == 2) { 
+        cout << 1000 + (100 * arr[0]);
+    }
+    if (cnt == 1) {
+        if ( arr[1] == arr[2] ){
+            cout << 1000 + (100 * arr[1]);
+        } else {
+            cout << 100 * max({arr[0], arr[1], arr[2]});
+        }
+    }
+}
