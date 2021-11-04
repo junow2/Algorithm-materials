@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long li;
+li a, b;
+int main(void) {
+
+  cin >> a >> b;
+
+  if (b < a) {
+    swap(a, b);
+  } 
+
+  if (a == b || a+1 == b) { 
+    cout << 0; 
+    return 0;
+  }
+
+  cout << b - a - 1 << endl;
+  for (li i = a+1; i < b; i++) {
+    cout << i << " ";
+  }
+
+}
