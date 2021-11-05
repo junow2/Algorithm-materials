@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long li;
+
+int n, i, j, k, m;
+
+int main(void) {
+  cin >> n;
+  m = (n*2) - 1;
+
+  for (i = m; i > 0; i-=2) {
+    for (k = 1; k < i; k+=2) {
+      cout << " ";
+    }
+    for (j = 0; j <= m-i; j++) {
+      cout << "*";
+    }
+    if ( i != 1) {
+      cout << endl;
+    } 
+  }
+}
