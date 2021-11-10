@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long li;
+
+int main(void) {
+  int T;
+  cin >> T;
+  for (int i=0; i < T; i++) {
+    string s;
+    cin >> s;
+    list <char>L;
+    auto cursor = L.begin();
+
+    for (auto c: s) {
+      if (c == '<') {
+        if (cursor != L.begin()) cursor--;
+      }
+      else if (c == '>') {
+        if (cursor != L.end()) cursor++;
+      }
+      else if (c == '-') {
+        if (cursor != L.begin()) {
+          cursor--;
+          cursor = L.erase(cursor);
+        } 
+      } else L.insert(cursor, c);
+    }
+    
+    for (auto c: L) cout << c;
+    cout << endl;
+  }
+}
