@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long li;
+
+int main(void) {
+  ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+  int n, cnt = 0;
+  cin >> n;
+  stack <int>s;
+  string res; 
+  bool check = true; 
+
+  while (n--) {
+    int T;
+    cin >> T; 
+
+    if (cnt < T) {
+      while (cnt < T) {
+        cnt++;
+        s.push(cnt);
+        res += "+";
+      }
+      s.pop();
+      res += "-";    
+    }
+    else {
+      if (T != s.top()) check = false;
+      else {
+        s.pop();
+        res += "-";
+      }
+
+      if (!check) {
+        cout << "NO";
+        return 0;
+      }
+    }
+  }
+
+  for (auto c: res) cout << c << "\n";
+}
