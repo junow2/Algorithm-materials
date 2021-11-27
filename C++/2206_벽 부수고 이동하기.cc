@@ -1,52 +1,51 @@
 #include <bits/stdc++.h>
-#define endl "\n"
 using namespace std;
+#define endl "\n"
 
-int board[32][32][32], vis[32][32][32];
-int dx[6] = {1, 0, -1, 0, 0, 0}, dy[6] = {0, 1, 0, -1, 0, 0}, dz[6] = {0, 0, 0, 0, -1, 1};
+struct tup {
+  int X, Y, Z;
+};
+
+int board[1002][1002], vis[1002][1002][2];
+int dx[4] = {1, 0, -1, 0}, dy[4] = {0, 1, 0, -1};
 
 int main(void) {
   ios::sync_with_stdio(false); cin.tie(NULL);
   
-  while (1) {
-    memset(board, 0, sizeof(board));
-    memset(vis, -1, sizeof(vis));
-    queue<tuple<int, int, int>> q; 
-
-    int L, R, C; cin >> L >> R >> C;
-    if (!L && !R && !C) return 0;
-
-    for (int i=0; i < L; i++) {
-      for (int j=0; j < R; j++) {
-        string s; cin >> s;
-        for (int k=0; k < C; k++) {
-          if (s[k] == '#') board[i][j][k] = -1;
-          if (s[k] == 'S') { vis[i][j][k] = 0; q.push({i, j, k}); }
-          if (s[k] == 'E') board[i][j][k] = 1;  
-        }
-      }
+  memset(vis, -1, sizeof(vis));
+  int N, M; cin >> N >> M;
+  for (int i=0; i < N; i++) {
+    string s; cin >> s;
+    for (int j=0; j < M; j++) {
+      if (s[j] == '1') board[i][j] = 1;
     }
-
-    int time; bool esc = false; 
-    while(!q.empty()) {
-      auto cur = q.front(); q.pop();
-      for (int dir=0; dir < 6; dir++) {
-        int nz = get<0>(cur) + dz[dir];
-        int nx = get<1>(cur) + dx[dir];
-        int ny = get<2>(cur) + dy[dir];
-
-        if (nz < 0 || nx < 0 || ny < 0 || nz >= L || nx >= R || ny >= C) continue;
-        if (vis[nz][nx][ny] >= 0 || board[nz][nx][ny] == -1) continue;
-        if (board[nz][nx][ny]) { 
-          esc = true;
-          time = vis[get<0>(cur)][get<1>(cur)][get<2>(cur)] + 1;
-          break;
-        }
-        vis[nz][nx][ny] = vis[get<0>(cur)][get<1>(cur)][get<2>(cur)] + 1;
-        q.push({nz, nx, ny});
-      }
-    }
-    if (esc) cout << "Escaped in " << time << " minute(s).\n";
-    else cout << "Trapped!\n";
   }
+
+  queue<tup> q; 
+  vis[0][0][0] = 1; q.push({0, 0, 0});
+  while(!q.empty()) {
+    auto cur = q.front(); q.pop();
+    bool check = cur.Z;
+    // 시작지점이 도착지인 경우 
+    if (cur.X == N-1 && cur.Y == M-1) { cout << vis[cur.X][cur.Y][check]; return 0;}
+    
+    for (int dir=0; dir < 4; dir++) {
+      int nx = cur.X + dx[dir];
+      int ny = cur.Y + dy[dir];
+
+      if (nx < 0 || ny < 0 || nx >= N || ny >= M) continue;
+      if (nx == N-1 && ny == M-1) { cout << vis[cur.X][cur.Y][check] + 1; return 0; }
+      // 벽을 부순적없고 벽을 만났을 때 
+      if (!check && board[nx][ny] && vis[nx][ny][check] == -1) { 
+        vis[nx][ny][1] = vis[cur.X][cur.Y][check] + 1; 
+        q.push({nx, ny, 1});
+      }
+      // 벽을 만나지 않고 정상적으로 이동할 때 
+      if (!board[nx][ny] && vis[nx][ny][check] == -1) {
+        vis[nx][ny][check] = vis[cur.X][cur.Y][check] + 1;
+        q.push({nx, ny, check});
+      }
+    }
+  }
+  cout << -1;
 }
