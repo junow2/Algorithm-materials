@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+
+int main(void) {
+  ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+  int a, b, c, d, e;
+  cin >> a >> b >> c >> d >> e;
+  cout << ((a*a) + (b*b) + (c*c) + (d*d) + (e*e))%10;
+} 
