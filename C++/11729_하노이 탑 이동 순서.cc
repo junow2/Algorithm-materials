@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+
+void hanoi(int srt, int dest, int n) {
+  if (n == 1) {
+    cout << srt << ' ' << dest << endl;  
+    return;
+  }
+
+  hanoi(srt, 6-srt-dest, n-1);
+  cout << srt << ' ' << dest << endl; 
+  hanoi(6-srt-dest, dest, n-1);
+}
+
+int main(void) {
+  ios_base::sync_with_stdio(false); cin.tie(NULL);
+ 
+  int N; cin >> N; 
+  int ans = (int) pow(2, N) - 1;
+  cout << ans << endl;  
+
+  hanoi(1, 3, N);
+} 
