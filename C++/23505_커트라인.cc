@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+
+bool desc(int a, int b) {
+  return a > b;
+}
+
+int main(void) {
+  ios::sync_with_stdio(false); cin.tie(NULL);
+
+  int N, k; int arr[1002]; 
+  cin >> N >> k; 
+
+  for (int i=0; i < N; i++) cin >> arr[i]; 
+
+  sort(arr, arr+N, desc); cout << arr[k-1];
+}
