@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll; 
+#define endl '\n'
+#define MAX 1000002 
+
+int n, m;
+unordered_map<string, int> p; 
+string s;
+string di[100002]; 
+
+int main(void) {
+  ios::sync_with_stdio(false); cin.tie(NULL);
+
+  cin >> n >> m;
+
+  for (int i=1; i<=n; i++) { cin >> s; p[s] = i; di[i] = s; }
+  for (int i=1; i<=m; i++) { 
+    cin >> s;
+    if (isdigit(s[0])) cout << di[stoi(s)] << endl; 
+    else cout << p[s] << endl; 
+  }
+}

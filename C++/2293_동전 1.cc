@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+#define ll long long
+
+int N, K;
+int dp[10002] = {1, }, A[102]; 
+
+int main(void) {
+  ios::sync_with_stdio(false); cin.tie(NULL);
+
+  cin >> N >> K; 
+  for (int i=1; i<=N; i++) cin >> A[i];  
+
+  for (int i=1; i<=N; i++) 
+    for (int n=A[i]; n<=K; n++) 
+      dp[n] += dp[n-A[i]]; 
+  
+  cout << dp[K]; 
+}

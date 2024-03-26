@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll; 
+#define endl '\n'
+#define MAX 1000002 
+
+int N, M;
+unordered_map<string, string> li; 
+string si, pw;
+
+int main(void) {  
+  ios::sync_with_stdio(false); cin.tie(NULL);
+
+  cin >> N >> M; 
+  for (int i=0; i<N; i++) {
+    cin >> si >> pw; 
+    li[si] = pw; 
+  }
+
+  for (int i=0; i<M; i++) { cin >> si; cout << li[si] << endl; }
+
+}

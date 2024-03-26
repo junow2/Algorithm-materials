@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll; 
+#define endl '\n'
+#define MAX 1000002 
+
+int n, id;
+unordered_set<string> p; 
+string s, st;
+
+int main(void) {
+  ios::sync_with_stdio(false); cin.tie(NULL);
+
+  cin >> n;
+  for (int i=0; i<n; i++) {
+    cin >> s >> st; 
+    
+    if (st == "enter") p.insert(s); 
+    else p.erase(s);
+  }
+
+  vector<string> v(p.begin(), p.end()); 
+  sort(v.begin(), v.end(), greater<string>()); 
+  for (string e: v) cout << e << endl;
+}
