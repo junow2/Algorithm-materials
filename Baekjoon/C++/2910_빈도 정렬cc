@@ -21,14 +21,14 @@ int main(void) {
 
   cin >> N >> C;
   for (int i=0; i<N; i++) {
-    cin >> inp; m[inp]++;
     
+    cin >> inp; m[inp]++;
     if (m[inp] == 1) ord[inp] = i+1;
     }
 
   vector <pair<int, int>> v(m.begin(), m.end());   
   sort(v.begin(), v.end(), cmp); 
 
-  for (auto i: v) 
+  for (pair<int, int> i: v) 
     for (int j=0; j<i.second; j++) cout << i.first << " ";
 }
