@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std; 
+#define endl '\n'
+typedef long long ll;
+
+int N, K;
+int dp[1002][1002] = {1};
+
+int f(int x, int y) {
+
+  for (int i=1; i<=x; i++){
+    for (int j=0; j<=i; j++) {
+      if (j == 0 || j == i) dp[i][j] = 1; 
+      else 
+        dp[i][j] = (dp[i-1][j-1] + dp[i-1][j]) % 10007;
+    }
+  }
+
+  return dp[x][y];
+}
+
+int main(void) {
+  ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+  cin >> N >> K;
+  cout << f(N, K);
+}
